@@ -26,14 +26,13 @@ function PendulumsSystem () {
     return theta0 * Math.cos((2 * Math.PI * t) / T)
   }
 
-  function draw (Ls, t, x, y, h) {
+  function draw (Ls, t, h) {
     // only for in the program, needed?
     for (var i = 0; i < Ls.length; i++) {
       var L = Ls[i]
 
       ctx.save()
 
-      ctx.translate(x, y)
       ctx.rotate(rad_90)
       ctx.rotate(oscillate(t, L))
 
@@ -64,8 +63,14 @@ function PendulumsSystem () {
       var t = (new Date().getTime() / speed) - t0;
       ctx.fillText("t = " + Math.ceil(t) + "s", 10, 50);
 
-      draw(lengths, t, oneThirdWidth, 50, twoThirdHeight)
-      draw(lengths2, t, twoThirdWidth, 50, twoThirdHeight)
+      ctx.save()
+      ctx.translate(oneThirdWidth, 50)
+      draw(lengths, t, twoThirdHeight)
+
+      ctx.translate(oneThirdWidth, 0)
+      draw(lengths2, t, twoThirdHeight)
+      ctx.restore()
+
     }, 30);
   }
 
