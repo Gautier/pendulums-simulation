@@ -54,8 +54,8 @@ function PendulumsSystem () {
         lengths = _.map(_.range(51, 66), targetOscillation);
         lengths2 = _.map(_.range(51, 66, .5), targetOscillation);
 
-    ctx.strokeStyle = 'rgb(255, 255, 255)'
-    ctx.fillStyle = 'rgb(255, 255, 255)'
+    ctx.strokeStyle = 'rgb(0, 0, 0)'
+    ctx.fillStyle = 'rgb(0, 0, 0)'
     ctx.lineWidth = 1;
 
     this.timer = setInterval (function () {
