@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <title>Simple Harmonic (and non-harmonic) Motion simulation (x2)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    canvas {
+      background: black;
+    }
+  </style>
+
+  <script type="text/javascript" src="underscore.js"></script>
+</head>
+<body>
+<canvas id="c" style="top:0px; left:0px;width:99%;height:90%;"></canvas>
+<script type="text/javascript" src="pendulums.js"></script>
+<button id="startFastButton">start fast</button>
+<button id="startSlowButton">start slow</button>
+Simulating <a href="http://sciencedemonstrations.fas.harvard.edu/icb/icb.do?keyword=k16940&pageid=icb.page80863&pageContentId=icb.pagecontent341734&state=maximize&view=view.do&viewParam_name=indepth.html#a_icb_pagecontent341734">this experience</a>, with a twist from <a href="http://news.ycombinator.com/item?id=2931268">HN</a>.
+<script>
+  var pendulums = new PendulumsSystem(),
+      startFastButton = document.getElementById('startFastButton')
+      startSlowButton = document.getElementById('startSlowButton')
+
+  function setupButton(button, speed) {
+
+    function firstClick() {
+      pendulums.stop()
+      pendulums.start(speed)
+      button.innerHTML = "re" + button.innerHTML;
+      button.removeEventListener("click", firstClick, false)
+      button.addEventListener("click", followingClicks, false)
+    }
+
+    function followingClicks() {
+      pendulums.stop()
+      pendulums.start(speed)
+    }
+
+    button.addEventListener("click", firstClick, false)
+  }
+
+  setupButton(startFastButton, 1000);
+  setupButton(startSlowButton, 3000);
+</script>
+</body>
+</html>
