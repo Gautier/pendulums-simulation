@@ -39,6 +39,7 @@ function PendulumsSystem () {
       ctx.beginPath()
       ctx.moveTo(0, 0)
       ctx.lineTo(h * L, 0)
+      ctx.arc(h * L, 0, 6, 0, 360)
       ctx.stroke()
 
       ctx.restore()
